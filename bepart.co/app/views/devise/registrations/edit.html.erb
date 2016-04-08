@@ -1,0 +1,74 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= current_user.email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :User_name, "Nombre de usuario" %><br />
+    <%= current_user.User_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name, "Nombre" %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name, "Apellido" %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :doc_type, "Tipo" %><br />
+    <%= f.select :doc_type, options_for_select(["PASS", "TI", "CC", "CE"]) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :document, "Documento" %><br />
+    <%= f.text_field :document %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phonenumber1, "Telefono/Movil 1" %><br />
+    <%= f.text_field :phonenumber1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phonenumber2, "Telefono/Movil 2" %><br />
+    <%= f.text_field :phonenumber2 %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password, "Nueva contraseña" %> <i>(Déjala en blanco si no la quieres cambiar.)</i><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "Repetir contraseña" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password, "Contraseña actual" %> <i>(Necesitamos tu actual contraseña para confirmar los cambios.)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Actualizar" %>
+  </div>
+<% end %>
+
+<h3>Cancelar mi cuenta</h3>
+
+<p>Infeliz? <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "¿Estas seguro?" }, method: :delete %></p>
+
+<%= link_to "Volver", :back %>
